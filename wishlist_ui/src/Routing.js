@@ -12,7 +12,6 @@ return (
 
     <Router>
         <Switch>
-   
         <Route exact path="/" component={Welcome} />
         <Route path="/admin" component={Admin} />
         <Route path="/user" component={User} />

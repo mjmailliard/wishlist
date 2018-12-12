@@ -7,7 +7,13 @@ class Admin extends Component {
         <Layout>
         <div>
   
-  <p>Admin</p>
+  <p>Admin Page</p>
+  <ul>
+      <li>List all users</li>
+      <li>Change users</li>
+      <li>Delete users</li>
+      
+  </ul>
   
         </div>
         </Layout>

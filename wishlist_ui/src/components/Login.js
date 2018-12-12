@@ -10,8 +10,8 @@ class Login extends Component {
   <p>Login Form</p>
   <p>Email here</p>
   <p>Password here</p>
-  
-  <a href="#"><button>Login</button></a>
+  <a href="/"><button>Forgot Password</button></a>  
+  <a href="/"><button>Login</button></a>
   
         </div>
         </Layout>

@@ -1,0 +1,22 @@
+.homeButton {
+position: fixed;
+top: 15px;
+left: 15px;
+}
+.signUpButton {
+position: fixed;
+top: 15px;
+right: 80px;
+
+}
+.loginButton {
+    position: fixed;
+    top: 15px;
+    right: 15px;
+}
+header {
+    text-align: center;
+}
+footer {
+    text-align: center;
+}

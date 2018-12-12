@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+
 import Layout from './Layout';
+import './Welcome.css'
 class Welcome extends Component {
     render() {
       return (
         <Layout> 
         <div>
            
-         <p>Welcome</p>
-
+         <p>Welcome Page</p>
+<p>page info here</p>
             
         </div>
         </Layout> 
