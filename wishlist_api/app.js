@@ -1,9 +1,12 @@
  const Hapi = require("hapi");
  const monk = require('monk');
  const server = Hapi.Server({
-    port: 3000,
-    host: 'localhost'
+    port: 3050,
+    host: 'localhost',
+    "routes": { "cors": true }
  });
+
+ 
  const db_url = 'mongodb://admin:admin123@ds227664.mlab.com:27664/wishlist_db';
  const db = monk(db_url);
 
