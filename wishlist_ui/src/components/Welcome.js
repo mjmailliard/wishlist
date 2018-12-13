@@ -8,7 +8,7 @@ class Welcome extends Component {
         <Layout> 
         <div>
            
-         <p>Welcome Page</p>
+         <h2>Welcome Page</h2>
 <p>page info here</p>
             
         </div>
