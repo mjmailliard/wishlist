@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import Layout from './Layout';
 import './Login.css'
+import { createBrowserHistory } from 'history';
 
-
-
+const history = createBrowserHistory();
 
   class Login extends Component {
     constructor(props) {
@@ -26,8 +26,8 @@ import './Login.css'
     
     handleSubmit(event) {
     event.preventDefault()
-      // const formData = JSON.stringify({...this.state})
-
+  
+//this is probably where I want to verify if account exists
        fetch(`http://localhost:3050/users/email/${this.state.email}`, {
       headers: {
         "Content-Type":"application/json"
@@ -49,11 +49,12 @@ import './Login.css'
  
      }, () => {
        if ( this.state.password === this.state.dbPassword) {
-// redirect here
+        history.push('/user', {state: {db_id: this.state.db_id}}) 
+        history.go(0)
        }else {
-        alert('you entered an incorrect password')
+        alert('Sorry, ' + this.state.dbName + ', you entered an incorrect password')
         }
-       
+      
        
       })
  
