@@ -36,7 +36,22 @@ server.route({
         return users.find({_id: request.params.id})  
     }
 });
-
+server.route({
+    method: "GET",
+    path: "/users/email/{_email}",
+    handler: (request, h) => { 
+        
+        return users.find({email: request.params._email})  
+    }
+});
+server.route({
+    method: "GET",
+    path: "/users/verify/{_email}",
+    handler: (request, h) => { 
+        
+        return users.find({email: request.params._email}, 'email')  
+    }
+});
 server.route({
     method: "POST",
     path: "/users",
@@ -79,7 +94,7 @@ server.route({
     handler: (request, h) => { 
         
         return lists.find({owner: request.params.owner}, 
-            {fields: {"_id": 1, "name": 1,"description": 1}})  
+            {fields: {"_id": 1, "name": 1,"description": 1, "items": 1}})  
     }
 });
 
