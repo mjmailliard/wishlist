@@ -27,7 +27,7 @@ const history = createBrowserHistory();
     handleSubmit(event) {
     event.preventDefault()
   
-//this is probably where I want to verify if account exists
+
        fetch(`http://localhost:3050/users/email/${this.state.email}`, {
       headers: {
         "Content-Type":"application/json"

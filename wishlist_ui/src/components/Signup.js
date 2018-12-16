@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import Layout from './Layout';
 import './Signup.css'
-// import { Formik, Field, Form, ErrorMessage } from 'formik';
+import { createBrowserHistory } from 'history';
 
+const history = createBrowserHistory();
 class Signup extends Component {
   constructor(props) {
     super(props);
@@ -10,8 +11,9 @@ class Signup extends Component {
       name: '',
       email: '',
       password: '',
-      passwordVerify: ''
-
+      passwordVerify: '',
+      db_id: '',
+      dbEmail: ''
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -27,23 +29,45 @@ class Signup extends Component {
    if( this.state.password !== this.state.passwordVerify) {
     throw alert('Your passwords do not match.')
    } 
-    const formData = JSON.stringify({...this.state})
-     fetch('http://localhost:3050/users',  {
-    method: 'POST',
-    body: formData,
-    headers: {
-      "Content-Type":"application/json"
-      
-    }
-    
-  })
+  const formData = JSON.stringify({...this.state})
+//check if account email is already in the db
+fetch(`http://localhost:3050/users/verify/${this.state.email}`, {
+  headers: {
+    "Content-Type":"application/json"
+  }
+}).then(results => {
+   return results.json()
+}).then(data => {
+  const db_data = data.reduce((acc, cur) => cur, 0)
+ this.setState({
+ 
+   db_id: db_data._id,
+   dbEmail: db_data.email
 
-    console.log(formData)
-    this.setState = {
-      name: '',
-      email: '',
-      password: ''
-    };
+ }, async ()  => {  if ( this.state.email === this.state.dbEmail ) {
+    return alert(`${this.state.email} already has an account.`)
+
+ } else {
+       fetch('http://localhost:3050/users',  {
+        method: 'POST',
+        body: formData,
+        headers: {
+          "Content-Type":"application/json" 
+         }  
+      }) 
+
+      alert('Congratulations! You may now log in.')
+  // history.push('/user', {state: {db_id: this.state.db_id}}) 
+  // history.go(0)    
+ } })
+
+
+})
+ //create account
+
+
+    
+
   
   }
   

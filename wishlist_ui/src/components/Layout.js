@@ -10,8 +10,8 @@ class Layout extends Component {
                     <header>
                     <a href="/"><button className="homeButton">Home</button></a>
                         <h1>Wishlists</h1>
-                        <a href="/signup"><button className="signUpButton">Sign Up</button></a>
-                        <a href="/login"><button className="loginButton">Login</button></a>
+                        {/* <a href="/signup"><button className="signUpButton">Sign Up</button></a>
+                        <a href="/login"><button className="loginButton">Login</button></a> */}
 
 
                     </header>

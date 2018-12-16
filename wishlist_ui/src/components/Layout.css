@@ -4,15 +4,17 @@ top: 15px;
 left: 15px;
 }
 .signUpButton {
-position: fixed;
+    margin: 5px;
+/* position: fixed;
 top: 15px;
-right: 90px;
+right: 90px; */
 
 }
 .loginButton {
-    position: fixed;
+    margin: 5px;
+    /* position: fixed;
     top: 15px;
-    right: 15px;
+    right: 15px; */
 }
 header {
     text-align: center;
