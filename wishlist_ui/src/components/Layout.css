@@ -5,6 +5,7 @@ left: 15px;
 }
 .signUpButton {
     margin: 5px;
+
 /* position: fixed;
 top: 15px;
 right: 90px; */
@@ -12,10 +13,9 @@ right: 90px; */
 }
 .loginButton {
     margin: 5px;
-    /* position: fixed;
-    top: 15px;
-    right: 15px; */
+
 }
+
 header {
     text-align: center;
 }

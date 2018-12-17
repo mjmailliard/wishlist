@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import Layout from './Layout';
+import './User.css';
+import { createBrowserHistory } from 'history';
 
+const history = createBrowserHistory();
 let db_user = 'not yet';
-// let db_lists = ['declared']
+
 
 class User extends Component {
   constructor(props) {
@@ -18,6 +21,7 @@ class User extends Component {
 
   componentDidMount() {
   // retrieve user info by {_id: }
+  
     fetch(`http://localhost:3050/users/${this.state._id}`, {
       headers: {
         "Content-Type":"application/json"
@@ -75,9 +79,22 @@ let lists = this.state.lists
       </tr>
       </tbody>
     </table>
+   
   </div>
 ))}
-
+<br/>
+{/* logout: erase state and send to home screen ? */}
+ <button className="logoutButton" onClick={ () => {
+   this.setState({
+     name: '',
+     email: '',
+     _id: '',
+     lists: ''
+   })
+           history.replace('/')
+           history.push('/')
+           history.go(0)
+ }}>Log Out</button>
   
   <p>User Page</p>
   <ul>
@@ -90,6 +107,8 @@ let lists = this.state.lists
       <li>edit list</li>
       <li>logout</li>
   </ul>
+
+
         </div>
        </Layout> 
       );

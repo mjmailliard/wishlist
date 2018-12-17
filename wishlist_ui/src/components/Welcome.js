@@ -9,11 +9,11 @@ class Welcome extends Component {
         <Layout> 
         <div>
            
-         <h2>Welcome Page</h2>
-<p>page info here</p>
-<a href="/signup"><button className="signUpButton">Sign Up</button></a>
-<a href="/login"><button className="loginButton">Login</button></a>
-
+          <h2>Welcome Page</h2>
+          <div className="buttonDiv">
+            <a href="/signup"><button className="signUpButton">Sign Up</button></a>
+            <a href="/login"><button className="loginButton">Login</button></a>
+          </div>
         </div>
         </Layout> 
       );

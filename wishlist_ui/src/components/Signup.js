@@ -39,27 +39,42 @@ fetch(`http://localhost:3050/users/verify/${this.state.email}`, {
    return results.json()
 }).then(data => {
   const db_data = data.reduce((acc, cur) => cur, 0)
- this.setState({
- 
-   db_id: db_data._id,
+
+this.setState({
+  //  db_id: db_data._id,
    dbEmail: db_data.email
+ },  ( async ()  => {  
 
- }, async ()  => {  if ( this.state.email === this.state.dbEmail ) {
-    return alert(`${this.state.email} already has an account.`)
-
- } else {
-       fetch('http://localhost:3050/users',  {
+   if ( this.state.email === this.state.dbEmail ) {
+    alert(`${this.state.email} already has an account.`)
+ } else { 
+       await fetch('http://localhost:3050/users',  {
         method: 'POST',
         body: formData,
         headers: {
           "Content-Type":"application/json" 
          }  
       }) 
+      await fetch(`http://localhost:3050/users/verify/${this.state.email}`, {
+        headers: {
+          "Content-Type":"application/json"
+        }
+      }).then(results => {
+        return results.json()
+     }).then(data => {
+      const newUser = data.reduce((acc, cur) => cur, 0)
 
-      alert('Congratulations! You may now log in.')
-  // history.push('/user', {state: {db_id: this.state.db_id}}) 
-  // history.go(0)    
- } })
+      this.setState({
+         db_id: newUser._id,
+         
+       },(()=> { 
+          history.push('/user', {state: {db_id: this.state.db_id}}) 
+          history.go(0) 
+       }))})
+//work on pushing to user page on successful acct creation
+
+   
+ } }))
 
 
 })
