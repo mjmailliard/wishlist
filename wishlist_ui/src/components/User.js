@@ -4,7 +4,7 @@ import './User.css';
 import { createBrowserHistory } from 'history';
 
 const history = createBrowserHistory();
-let db_user = 'not yet';
+let db_user = '';
 
 
 class User extends Component {
@@ -15,7 +15,6 @@ class User extends Component {
         name: '',
         _id: this.props.location.state.state.db_id,
         lists: []
-
       };   
   }
 
@@ -46,16 +45,29 @@ class User extends Component {
      return results.json() 
     })
     .then((data) => {
-      this.setState({lists: data})
+      
+      // const something = data.map(lists => lists)
+      // console.log(something)
+
+
+      this.setState({
+        lists: data,
+      
+       
+      })
 
     })
     
   }
 
-
     render() {
 let lists = this.state.lists
-// let listItems = this.state.lists.listItems
+
+console.log(lists)
+
+// let listItems = this.state.lists.map(list => list.items)
+// console.log(listItems)
+
       return (
           <Layout>
         <div>
@@ -66,24 +78,31 @@ let lists = this.state.lists
         Email: {this.state.email} 
   </label>
     
-{lists.map(list => (
-  <div key={list.name}> 
-  {/* rewrite this to capture the unique list id as the key */}
-    <table>
-      <tbody>
-      <tr>
-       <td>{list.name}</td><td>-</td><td><label>{list.description} </label></td>
-      </tr>
-      <tr>
-       <td colSpan="3"></td>
-      </tr>
-      </tbody>
-    </table>
+{ lists.map((list) => (
+  <div key={list._id}> 
    
+    {list.name} - {list.description}<br/>
+    {list._id}<br/>
+   
+
+    {lists.map((arrayItem, i) => ( 
+      <div key={i}>
+      {arrayItem.items[i].itemName} - 
+          {/* {arrayItem.items[i].item_id} - {arrayItem.items[i].itemName} - {arrayItem.items[i].itemDescription} - {arrayItem.items[i].link}<br/> */}
+          {arrayItem._id}
+    </div>
+  ))}
+
+
   </div>
-))}
+ 
+))
+
+}
+ 
+
 <br/>
-{/* logout: erase state and send to home screen ? */}
+
  <button className="logoutButton" onClick={ () => {
    this.setState({
      name: '',
