@@ -83,15 +83,14 @@ console.log(lists)
    
     {list.name} - {list.description}<br/>
     {list._id}<br/>
-   
+   {list.items.map(item => (<div key={item.itemName}>{item.itemName}</div>))}
 
-    {lists.map((arrayItem, i) => ( 
-      <div key={i}>
-      {arrayItem.items[i].itemName} - 
-          {/* {arrayItem.items[i].item_id} - {arrayItem.items[i].itemName} - {arrayItem.items[i].itemDescription} - {arrayItem.items[i].link}<br/> */}
-          {arrayItem._id}
-    </div>
-  ))}
+
+
+    {/* {list.items.map(arrayItem => (<div key={arrayItem.itemName}>
+      {arrayItem.itemName} - 
+          {arrayItem.items[i].item_id} - {arrayItem.items[i].itemName} - {arrayItem.items[i].itemDescription} - {arrayItem.items[i].link}<br/>
+          {arrayItem._id} </div> ))} */}
 
 
   </div>
