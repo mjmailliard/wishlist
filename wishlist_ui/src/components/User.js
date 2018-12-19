@@ -16,8 +16,9 @@ class User extends Component {
         _id: this.props.location.state.state.db_id,
         lists: []
       };   
-  }
-
+  
+  this.handleProfile = this.handleProfile.bind(this);
+    }
   componentDidMount() {
   // retrieve user info by {_id: }
   
@@ -59,7 +60,22 @@ class User extends Component {
     })
     
   }
+  handleProfile(event) {
+    event.preventDefault()
+    history.push('/profile', {state: {_id: this.state._id}}) 
+    history.go(0)
+  }
 
+  handleNewListButton(event) {
+    event.preventDefault()
+    history.push('/newlist', {state: {_id: this.state._id}}) 
+    history.go(0)
+  }
+  handleEditListButton(event) {
+    // event.preventDefault()
+    history.push('/editlist', {state: {_id: event}} )
+    history.go(0)
+  }
     render() {
 let lists = this.state.lists
 
@@ -73,24 +89,27 @@ console.log(lists)
         <div>
  
  
-  <label>Welcome{' ' + this.state.name}! <br/>
-        
-        Email: {this.state.email} 
-  </label>
+Welcome{' ' + this.state.name}! <br/>
+<button onClick={e => this.handleNewListButton(e)}>New List</button><button onClick={this.handleProfile}>Edit Profile</button>
+
+
+ 
     
 { lists.map((list) => (
   <div key={list._id}> 
    
-    {list.name} - {list.description}<br/>
-    {list._id}<br/>
-   {list.items.map(item => (<div key={item.itemName}>{item.itemName}</div>))}
+    {list.name} <button id={`${list._id}`} onClick={() => this.handleEditListButton(list._id)}>Edit list</button><br/> 
+    {list.description}<br/>
+   
+   {list.items.map(item => (
+   <div key={item.itemName}>
+   <a href={`${item.link}`} target="__blank">{item.itemName}</a> <br/> 
+   {item.itemDescription}
+   </div>))}
 
 
 
-    {/* {list.items.map(arrayItem => (<div key={arrayItem.itemName}>
-      {arrayItem.itemName} - 
-          {arrayItem.items[i].item_id} - {arrayItem.items[i].itemName} - {arrayItem.items[i].itemDescription} - {arrayItem.items[i].link}<br/>
-          {arrayItem._id} </div> ))} */}
+
 
 
   </div>
