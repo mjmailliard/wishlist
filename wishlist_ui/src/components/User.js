@@ -46,10 +46,7 @@ class User extends Component {
      return results.json() 
     })
     .then((data) => {
-      
-      // const something = data.map(lists => lists)
-      // console.log(something)
-
+  
 
       this.setState({
         lists: data,
@@ -77,12 +74,8 @@ class User extends Component {
     history.go(0)
   }
     render() {
-let lists = this.state.lists
 
-console.log(lists)
-
-// let listItems = this.state.lists.map(list => list.items)
-// console.log(listItems)
+      let lists = this.state.lists
 
       return (
           <Layout>
