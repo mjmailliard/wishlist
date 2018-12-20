@@ -101,10 +101,6 @@ Welcome{' ' + this.state.name}! <br/>
    </div>))}
 
 
-
-
-
-
   </div>
  
 ))

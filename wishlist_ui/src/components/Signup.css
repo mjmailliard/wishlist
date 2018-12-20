@@ -15,14 +15,27 @@ button:hover {
 input, select {
     width: 50vw;
     padding: 12px 20px;
-    
-    margin: 8px 0;
+    margin: 3px 0px;
     display: inline-block;
     border: 1px solid #ccc;
     border-radius: 5px;
     box-sizing: border-box;
   }
-  
+textarea{
+  width: 50vw;
+  padding: 12px 20px;
+  margin: 3px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+.itemNameInput{
+    width: 20vw;
+}
+.linkNameInput{
+  width: 30vw;
+}
   input[type=submit] {
     width: 50vw;
     background-color: #507;

@@ -47,6 +47,17 @@ class Profile extends Component {
       return (
         <Layout> 
         <div>
+        <button className="logoutButton" onClick={ () => {
+   this.setState({
+     name: '',
+     email: '',
+     _id: '',
+     password: ''
+   })
+           history.replace('/')
+           history.push('/')
+           history.go(0)
+ }}>Log Out</button>       
            
           <h2>Profile Page</h2>
  Name: {this.state.name}<br/>
