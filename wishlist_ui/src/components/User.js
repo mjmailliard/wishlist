@@ -73,6 +73,16 @@ class User extends Component {
     history.push('/editlist', {state: {_id: event}} )
     history.go(0)
   }
+  handleDeleteListButton(id) {
+    fetch(`http://localhost:3050/list/${id}`,  {
+        method: 'DELETE'
+      //  body: formData,
+        // headers: {
+        //   "Content-Type":"application/json" 
+        //  }  
+      }) 
+    history.go(0)
+  }
     render() {
 
       let lists = this.state.lists
@@ -91,7 +101,10 @@ Welcome{' ' + this.state.name}! <br/>
 { lists.map((list) => (
   <div key={list._id}> 
    
-    {list.name} <button id={`${list._id}`} onClick={() => this.handleEditListButton(list._id)}>Edit list</button><br/> 
+    {list.name}
+    <button name="editListButton" id={`editBtn-${list._id}`} onClick={() => this.handleEditListButton(list._id)}>Edit list</button>
+    <button name="deleteListButton" id={`delBtn-${list._id}`}  onClick={() => { if (window.confirm('Are you sure you wish to delete this item?\n (This process is irreversible)')) this.handleDeleteListButton(list._id) }}>Delete List</button>
+    <br/> 
     {list.description}<br/>
    
    {list.items.map(item => (
@@ -124,14 +137,10 @@ Welcome{' ' + this.state.name}! <br/>
   
   <p>User Page</p>
   <ul>
-      <li>view acct info</li>
       <li>change acct info</li>  
       <li>Delete acct</li>
-      <li>create list</li>
-      <li>View lists</li>
       <li>select list</li>
       <li>edit list</li>
-      <li>logout</li>
   </ul>
 
 
