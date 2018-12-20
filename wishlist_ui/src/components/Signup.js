@@ -71,14 +71,14 @@ this.setState({
           history.push('/user', {state: {db_id: this.state.db_id}}) 
           history.go(0) 
        }))})
-//work on pushing to user page on successful acct creation
+
 
    
  } }))
 
 
 })
- //create account
+
 
 
     

@@ -30,10 +30,10 @@ textarea{
   border-radius: 5px;
   box-sizing: border-box;
 }
-.itemNameInput{
+.itemName{
     width: 20vw;
 }
-.linkNameInput{
+.link{
   width: 30vw;
 }
   input[type=submit] {
@@ -55,8 +55,11 @@ textarea{
     border-radius: 5px;
     background-color: #f2f2f2;
     padding: 20px;
-  }
 
+  }
+.newList{
+  padding: 0px;
+}
 form {
   width: 50vw;
   margin-left: auto;

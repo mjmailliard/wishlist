@@ -13,9 +13,10 @@ class NewList extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          _id: this.props.location.state.state._id,
-          listName: '',
-          listDescription: '',
+
+          owner: this.props.location.state.state._id,
+          name: '',
+          description: '',
           items: [{item_id: itemCount,
                    itemName: '',
                    itemDescription: '',
@@ -25,6 +26,7 @@ class NewList extends Component {
         };   
     }
     addItem = (e)=> {
+      e.preventDefault()
       itemCounter()
       this.setState((prevState) => ({
         items: [...prevState.items,
@@ -32,11 +34,21 @@ class NewList extends Component {
           itemName: '',
           itemDescription: '',
           link: ''        }]
-      }))
+      }),console.log(this.state))
       
     }
     handleSubmit = (e) => {
       e.preventDefault()
+      const formData = JSON.stringify({...this.state})
+      fetch('http://localhost:3050/list',  {
+        method: 'POST',
+        body: formData,
+        headers: {
+          "Content-Type":"application/json" 
+         }  
+      }) 
+        history.push('/user', {state: {db_id: this.state.owner}}) 
+        history.go(0)
     }
     handleChange = (e) => {
       if (["item_id","itemName", "link","itemDescription"].includes(e.target.className) ) {
@@ -53,46 +65,25 @@ class NewList extends Component {
         // history.push('/user', {state: {_id: this.state._id}}) 
         history.goBack(1)
     }
-    // componentDidMount() {
-    //     // retrieve user info by {_id: }
-        
-    //       fetch(`http://localhost:3050/users/${this.state._id}`, {
-    //         headers: {
-    //           "Content-Type":"application/json"
-    //         }
-    //       }).then(results => {
-    //          return results.json()
-    //       }).then(data => {
-    //         let db_user = ''; 
-    //       db_user = data.reduce((acc, cur) => cur, 0)
-    //        this.setState({
-    //          name: db_user.name,
-    //          email: db_user.email,
-    //          password: db_user.password
-    //        },()=>{
-      
-    //        })
-         
-    //       })}
 
     render() {
     let {items} = this.state
       return (
         <Layout> 
-        <div>
+        <div className="newList">
            
           <h2>New List</h2>
  
 
           <form onSubmit={this.handleSubmit} onChange={this.handleChange}>
-            <input type="text" name="listName" id="listName" placeholder='List Name'></input><br/>
-            <textarea rows="3" name="listDescription" id="listDescription" placeholder="List Description"></textarea><br/>
+            <input type="text" name="name" id="name" placeholder='List Name'></input><br/>
+            <textarea rows="3" name="description" id="description" placeholder="List Description"></textarea><br/>
             <hr/>
 {items.map((val, i) => {
-  let itemId=`item-${i}`,itemNameId=`item-${i}`,linkId=`link-${i}`,itemDescriptionId=`itemDescription-${i}`
+let itemId=`item-${i}`,itemNameId=`item-${i}`,linkId=`link-${i}`,itemDescriptionId=`itemDescription-${i}`
 
   return(
-    <div key={itemId}>
+    <div className="newList" key={itemId}>
     {/* <input 
        type="hidden"
        name={itemId}
@@ -131,7 +122,8 @@ class NewList extends Component {
 
 
 
-<button onClick={this.addItem}>New Item</button><button type="submit">Save List</button>
+<button onClick={this.addItem}>New Item</button>
+<button type="submit" onSubmit={e => this.handleSubmit(e)}>Save List</button>
 
 </form>
 
