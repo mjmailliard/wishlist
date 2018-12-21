@@ -34,7 +34,7 @@ class NewList extends Component {
           itemName: '',
           itemDescription: '',
           link: ''        }]
-      }),console.log(this.state))
+      }))
       
     }
     handleSubmit = (e) => {
