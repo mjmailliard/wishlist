@@ -124,7 +124,7 @@ class EditList extends Component {
         <button type="submit">Save Changes</button>
 </form>  
       
-       <button onClick={e => this.backHandler(e)}>Back</button>
+       <button className="backButton" onClick={e => this.backHandler(e)}>Back</button>
               </div>
               </Layout> 
             );

@@ -15,6 +15,11 @@ right: 90px; */
     margin: 5px;
 
 }
+.backButton{
+position: fixed;
+bottom: 15px;
+left: 15px;  
+}
 
 header {
     text-align: center;

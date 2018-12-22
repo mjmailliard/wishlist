@@ -29,7 +29,13 @@ class Signup extends Component {
    if( this.state.password !== this.state.passwordVerify) {
     throw alert('Your passwords do not match.')
    } 
-  const formData = JSON.stringify({...this.state})
+  const formData = {
+      name: this.state.name,
+      email: this.state.email,
+      password: this.state.password
+
+    }
+    console.log(formData)
 //check if account email is already in the db
 fetch(`http://localhost:3050/users/verify/${this.state.email}`, {
   headers: {
@@ -50,7 +56,7 @@ this.setState({
  } else { 
        await fetch('http://localhost:3050/users',  {
         method: 'POST',
-        body: formData,
+        body: JSON.stringify(formData),
         headers: {
           "Content-Type":"application/json" 
          }  

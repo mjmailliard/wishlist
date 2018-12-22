@@ -60,11 +60,18 @@ class Profile extends Component {
  }}>Log Out</button>       
            
           <h2>Profile Page</h2>
- Name: {this.state.name}<br/>
- Email: {this.state.email}<br/>
+<form>
+    Name: {this.state.name}<br/>
+     Email: {this.state.email}<br/>
  Password: {this.state.password}<br/>
+<input type="text" name="name" id="name" value={this.state.name} className="listName" onChange={event => this.setState({name: event.target.value})}></input><br/>
+<input type="text" name="email" id="name" value={this.state.email} className="listName" onChange={event => this.setState({email: event.target.value})}></input><br/>
+<input type="text" name="password" id="name" value={this.state.password} className="listName" onChange={event => this.setState({password: event.target.value})}></input><br/>
 
- <button onClick={e => this.backHandler(e)}>Back</button>
+ <br/>
+
+</form>
+ <button className="backButton" onClick={e => this.backHandler(e)}>Back</button>
         </div>
         </Layout> 
       );
