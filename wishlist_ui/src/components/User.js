@@ -139,8 +139,8 @@ Welcome{' ' + this.state.name}! <br/>
   <ul>
       <li>change acct info</li>  
       <li>Delete acct</li>
-      <li>select list</li>
-      <li>edit list</li>
+    
+
   </ul>
 
 

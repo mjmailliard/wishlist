@@ -3,12 +3,14 @@ import React, { Component } from 'react';
 import Layout from './Layout';
 import './Layout.css'
 import { createBrowserHistory } from 'history';
+import uuid from "uuid";
 const history = createBrowserHistory();
-let itemCount = 0
-const itemCounter = () => {
-  itemCount++
-return itemCount
-}
+// let itemCount = 0
+// const itemCounter = () => {
+//   itemCount++
+// return itemCount
+// }
+
 class NewList extends Component {
     constructor(props) {
         super(props);
@@ -17,7 +19,7 @@ class NewList extends Component {
           owner: this.props.location.state.state._id,
           name: '',
           description: '',
-          items: [{item_id: itemCount,
+          items: [{item_id: uuid.v1().substring(0,7),
                    itemName: '',
                    itemDescription: '',
                    link: ''
@@ -27,10 +29,10 @@ class NewList extends Component {
     }
     addItem = (e)=> {
       e.preventDefault()
-      itemCounter()
+      // itemCounter()
       this.setState((prevState) => ({
         items: [...prevState.items,
-          {item_id: itemCount,
+          {item_id: uuid.v1().substring(0,7),
           itemName: '',
           itemDescription: '',
           link: ''        }]

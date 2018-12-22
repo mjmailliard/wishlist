@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Layout from './Layout';
 import './Layout.css'
 import { createBrowserHistory } from 'history';
+import uuid from "uuid";
 const history = createBrowserHistory();
 let list_data
 class EditList extends Component {
@@ -37,6 +38,17 @@ class EditList extends Component {
       })
     })
     }
+    addItem = (e)=> {
+        e.preventDefault()
+        this.setState((prevState) => ({
+          items: [...prevState.items,
+            {item_id: uuid.v1().substring(0,7),
+            itemName: '',
+            itemDescription: '',
+            link: ''        }]
+        }))
+        
+      }
     handleChange = (e) => {
         if (["item_id","itemName", "link","itemDescription"].includes(e.target.className) ) {
             let items = [...this.state.items]   
@@ -108,6 +120,7 @@ class EditList extends Component {
     </div>
  
 ))}
+        <button onClick={this.addItem}>New Item</button>
         <button type="submit">Save Changes</button>
 </form>  
       
