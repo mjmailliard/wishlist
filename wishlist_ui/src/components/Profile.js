@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import Layout from './Layout';
 import './Layout.css'
 import { createBrowserHistory } from 'history';
+import Toggle from './Toggle'
+
 const history = createBrowserHistory();
 
 class Profile extends Component {
@@ -12,11 +14,19 @@ class Profile extends Component {
           email: '',
           name: '',
           _id: this.props.location.state.state._id,
-         password: ''
+         password: '',
+         passwordVerify: ''
 
         };   
     }
-    backHandler(event){
+    handleSubmit(e){
+      e.preventDefault()
+
+    }
+
+
+    
+backHandler(event){
         event.preventDefault()
         // history.push('/user', {state: {_id: this.state._id}}) 
         history.goBack(1)
@@ -44,6 +54,7 @@ class Profile extends Component {
           })}
 
     render() {
+
       return (
         <Layout> 
         <div>
@@ -60,14 +71,27 @@ class Profile extends Component {
  }}>Log Out</button>       
            
           <h2>Profile Page</h2>
-<form>
-    Name: {this.state.name}<br/>
-     Email: {this.state.email}<br/>
- Password: {this.state.password}<br/>
-<input type="text" name="name" id="name" value={this.state.name} className="listName" onChange={event => this.setState({name: event.target.value})}></input><br/>
-<input type="text" name="email" id="name" value={this.state.email} className="listName" onChange={event => this.setState({email: event.target.value})}></input><br/>
-<input type="text" name="password" id="name" value={this.state.password} className="listName" onChange={event => this.setState({password: event.target.value})}></input><br/>
+<form onSubmit={this.handleSubmit}>
+ <Toggle>
+ {({ on, off, toggle }) => ( 
 
+<div>
+       <button onClick={ toggle }>Edit</button> <br/>
+
+Name: {off && <label>{this.state.name}</label>}<br/>
+{on && <input type="text" name="name" id="name" value={this.state.name} className="listName" onChange={event => this.setState({name: event.target.value})} autoComplete="username"></input>}<br/>
+Email: {off && <label>{this.state.email}</label>}<br/>
+{on && <input type="email" name="email" id="email" value={this.state.email} className="listName" onChange={event => this.setState({email: event.target.value})} autoComplete="email"></input>}<br/>
+Password: {off && <label>*******</label>}<br/>
+{on && <input type="password" name="password" id="password" value={this.state.password} className="listName" onChange={event => this.setState({password: event.target.value})} autoComplete="password"></input>}
+{on && <label>Verify Password:</label>}
+{on && <input type="password" name="passwordVerify" id="passwordVerify" defaultValue={this.state.password} className="listName" onChange={event => this.setState({passwordVerify: event.target.value})} autoComplete="password again"></input>}
+<button type="submit">Save</button>
+
+
+</div>
+ )}
+</Toggle>
  <br/>
 
 </form>
