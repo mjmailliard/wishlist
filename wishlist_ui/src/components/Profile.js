@@ -15,13 +15,68 @@ class Profile extends Component {
           name: '',
           _id: this.props.location.state.state._id,
          password: '',
-         passwordVerify: ''
-
+         passwordVerify: '',
+         newEmail: '',
+         dbEmail: ''
         };   
     }
-    handleSubmit(e){
+    handleSubmit = (e) => {
       e.preventDefault()
+      if( this.state.password !== this.state.passwordVerify) {
+        throw alert('Your passwords do not match.')
+       } 
+       //if email didn't change, patch the name and pw
+      if(this.state.email === this.state.newEmail) {
+        const formData = {
+          name: this.state.name,
+          password: this.state.password
+        }
+        fetch(`http://localhost:3050/users/${this.state._id}`, {
+          method: 'PATCH',
+          body: JSON.stringify(formData),
+          headers: {
+            "Content-Type":"application/json" 
+           }  
+        })
+        history.go(0) // refresh page
+        alert('Your profile information has been updated.') 
+        // functions up to this point
+      } else { //if email changed, check if new email is already in db
+         fetch(`http://localhost:3050/users/verify/${this.state.newEmail}`, {
+          headers: {
+            "Content-Type":"application/json"
+          }})
+          .then(results => {
+            return results.json()
+          })
+          .then(data => {
+            const db_data = data.reduce((acc, cur) => cur, 0)
+            this.setState({ 
+              dbEmail: db_data.email
+            }, ( async ()=>{ //compare new email to search result
+              if(this.state.newEmail === this.state.dbEmail) {
+                alert(`${this.state.newEmail} already has an account.`) 
+              } else { //if new email doesn't exist in db, then patch all data
+                const formData = {
+                  name: this.state.name,
+                  password: this.state.password,
+                  email: this.state.newEmail  
+                }
+                  await fetch(`http://localhost:3050/users/${this.state._id}`,{
+                    method: 'PATCH',
+                    body: JSON.stringify(formData),
+                    headers: {
+                      "Content-Type":"application/json"
+                    }
+                  })
+                  history.go(0)
+              }
+            }))
 
+          })
+
+
+      } 
     }
 
 
@@ -46,7 +101,9 @@ backHandler(event){
            this.setState({
              name: db_user.name,
              email: db_user.email,
-             password: db_user.password
+             newEmail: db_user.email,
+             password: db_user.password,
+             passwordVerify: db_user.password
            },()=>{
       
            })
@@ -81,7 +138,7 @@ backHandler(event){
 Name: {off && <label>{this.state.name}</label>}<br/>
 {on && <input type="text" name="name" id="name" value={this.state.name} className="listName" onChange={event => this.setState({name: event.target.value})} autoComplete="username"></input>}<br/>
 Email: {off && <label>{this.state.email}</label>}<br/>
-{on && <input type="email" name="email" id="email" value={this.state.email} className="listName" onChange={event => this.setState({email: event.target.value})} autoComplete="email"></input>}<br/>
+{on && <input type="email" name="email" id="email" value={this.state.newEmail} className="listName" onChange={event => this.setState({newEmail: event.target.value})} autoComplete="email"></input>}<br/>
 Password: {off && <label>*******</label>}<br/>
 {on && <input type="password" name="password" id="password" value={this.state.password} className="listName" onChange={event => this.setState({password: event.target.value})} autoComplete="password"></input>}
 {on && <label>Verify Password:</label>}

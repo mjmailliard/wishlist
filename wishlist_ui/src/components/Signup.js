@@ -35,7 +35,7 @@ class Signup extends Component {
       password: this.state.password
 
     }
-    console.log(formData)
+  
 //check if account email is already in the db
 fetch(`http://localhost:3050/users/verify/${this.state.email}`, {
   headers: {

@@ -62,7 +62,7 @@ class EditList extends Component {
     handleSubmit = async (e) => {
         e.preventDefault()
         const formData = JSON.stringify({...this.state})
-        console.log(formData)
+       
             fetch(`http://localhost:3050/list/${this.state._id}`,  {
             method: 'PATCH',
             body: formData,

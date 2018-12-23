@@ -137,7 +137,7 @@ Welcome{' ' + this.state.name}! <br/>
   
   <p>User Page</p>
   <ul>
-      <li>change acct info</li>  
+  
       <li>Delete acct</li>
     
 
