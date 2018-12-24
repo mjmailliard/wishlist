@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Layout from './Layout';
 import './User.css';
 import { createBrowserHistory } from 'history';
+import Collapsible from 'react-collapsible';
 
 const history = createBrowserHistory();
 let db_user = '';
@@ -15,6 +16,7 @@ class User extends Component {
         name: '',
         _id: this.props.location.state.state.db_id,
         lists: []
+   
       };   
   
   this.handleProfile = this.handleProfile.bind(this);
@@ -83,6 +85,7 @@ class User extends Component {
       }) 
     history.go(0)
   }
+
     render() {
 
       let lists = this.state.lists
@@ -97,29 +100,28 @@ Welcome{' ' + this.state.name}! <br/>
 
 
  
-    
-{ lists.map((list) => (
-  <div key={list._id}> 
-   
-    {list.name}
-    <button name="editListButton" id={`editBtn-${list._id}`} onClick={() => this.handleEditListButton(list._id)}>Edit list</button>
-    <button name="deleteListButton" id={`delBtn-${list._id}`}  onClick={() => { if (window.confirm('Are you sure you wish to delete this item?\n (This process is irreversible)')) this.handleDeleteListButton(list._id) }}>Delete List</button>
-    <br/> 
-    {list.description}<br/>
-   
-   {list.items.map(item => (
-   <div key={item.itemName}>
-   <a href={`${item.link}`} target="__blank">{item.itemName}</a> <br/> 
-   {item.itemDescription}
-   </div>))}
 
+  { lists.map((list) => (
 
-  </div>
- 
-))
+      <div key={list._id}> 
+       <Collapsible trigger={(`${list.name} - ${list.description}`)}>
+          
+        {list.items.map(item => (
+            <div key={item.itemName}>
+          <a href={`${item.link}`} target="__blank">{item.itemName}</a> <br/> 
+          <label>{item.itemDescription}</label> 
+          
+            </div>))}
+            <button name="editListButton" id={`editBtn-${list._id}`} onClick={() => this.handleEditListButton(list._id)}>Edit list</button>
+          <button name="deleteListButton" id={`delBtn-${list._id}`}  onClick={() => { if (window.confirm('Are you sure you wish to delete this item?\n (This process is irreversible)')) this.handleDeleteListButton(list._id) }}>Delete List</button>
+          
+ </Collapsible>
+      </div>
 
-}
- 
+    ))
+  }
+      
+
 
 <br/>
 
@@ -135,13 +137,7 @@ Welcome{' ' + this.state.name}! <br/>
            history.go(0)
  }}>Log Out</button>
   
-  <p>User Page</p>
-  <ul>
-  
-      <li>Delete acct</li>
-    
 
-  </ul>
 
 
         </div>

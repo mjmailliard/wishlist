@@ -86,6 +86,15 @@ backHandler(event){
         // history.push('/user', {state: {_id: this.state._id}}) 
         history.goBack(1)
     }
+handleDeleteProfile(e) {
+  fetch(`http://localhost:3050/users/${this.state._id}`,  {
+    method: 'DELETE'
+})
+history.replace('/')
+history.push('/')
+history.go(0)
+}
+
     componentDidMount() {
         // retrieve user info by {_id: }
         
@@ -131,7 +140,6 @@ backHandler(event){
 <form onSubmit={this.handleSubmit}>
  <Toggle>
  {({ on, off, toggle }) => ( 
-
 <div>
        <button onClick={ toggle }>Edit</button> <br/>
 
@@ -150,8 +158,9 @@ Password: {off && <label>*******</label>}<br/>
  )}
 </Toggle>
  <br/>
-
 </form>
+<button className="deleteProfileButton" onClick={() => { if (window.confirm('Are you sure you wish to delete this profile?\n (This process is irreversible, there is NO coming back from this...)')) this.handleDeleteProfile(this.state._id) }}>Delete Profile</button>
+
  <button className="backButton" onClick={e => this.backHandler(e)}>Back</button>
         </div>
         </Layout> 

@@ -7,9 +7,12 @@
     "formik": "^1.4.0",
     "history": "^4.7.2",
     "react": "^16.6.3",
+    "react-collapsible": "^2.3.2",
     "react-dom": "^16.6.3",
     "react-router-dom": "^4.3.1",
+    "react-sanfona": "^1.4.0",
     "react-scripts": "2.1.1",
+    "semantic-ui-react": "^0.84.0",
     "uuid": "^3.3.2"
   },
   "scripts": {
