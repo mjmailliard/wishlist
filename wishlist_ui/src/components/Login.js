@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Layout from './Layout';
-import './Login.css'
+import '../App.css';
 import { createBrowserHistory } from 'history';
 
 const history = createBrowserHistory();

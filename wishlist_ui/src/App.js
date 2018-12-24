@@ -8,7 +8,7 @@ import Routing from './Routing';
 class App extends Component {
   render() {
     return (
-      <div>
+      <div className="divMain">
         <Routing/>
 
 

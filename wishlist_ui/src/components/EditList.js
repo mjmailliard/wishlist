@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Layout from './Layout';
-import './Layout.css'
+import '../App.css';
 import { createBrowserHistory } from 'history';
 import uuid from "uuid";
 const history = createBrowserHistory();
@@ -104,18 +104,20 @@ class EditList extends Component {
               <Layout> 
               <div>
                  
-                <h2>Edit List Page</h2>
+                <h2>Edit {this.state.name}</h2>
 <form onChange={this.handleChange} onSubmit={this.handleSubmit}>               
       <input type="text" name="name" data-id="name" id="name" value={this.state.name} className="listName" onChange={event => this.setState({name: event.target.value})}></input><br/>
        <textarea name="description" data-id="desc" id="desc" value={this.state.description} className="listDescription" onChange={event => this.setState({description: event.target.value})}></textarea><br/>
        <hr/>
 {listItems.map((item,i) => (
-    <div key={item.item_id} id={item.item_id} className="newList">
+    <div key={item.item_id} id={item.item_id} className="editList">
+         <button name={item.item_id} value={item.item_id} onClick={e => this.handleDeleteItem(e)} className="deleteItemBtn">Delete</button><br/>
+            
        <input type="text" data-id={i} id={item.item_id} name="itemName" value={item.itemName} className="itemName" onChange={event => this.setState({items:[{itemName: event.target.value}]})}></input>
-       <input type="text" data-id={i} name="link" value={item.link} className="link" onChange={event => this.setState({items:[{link: event.target.value}]})}></input><br/>
+       <input type="text" data-id={i} name="link" value={item.link} className="link" onChange={event => this.setState({items:[{link: event.target.value}]})}></input>
+       <br/>
+       
         <textarea name="itemDescription" data-id={i} id="itemDescID" value={item.itemDescription} className="itemDescription" onChange={event => this.setState({items:[{itemDescription: event.target.value}]})}></textarea>
-        <button name={item.item_id} value={item.item_id} onClick={e => this.handleDeleteItem(e)}>X</button><br/>
-
    
     </div>
  

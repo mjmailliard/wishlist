@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 // import {Link} from 'react-router-dom';
-import './Layout.css'
+import '../App.css';
 
 class Layout extends Component {
     render() {

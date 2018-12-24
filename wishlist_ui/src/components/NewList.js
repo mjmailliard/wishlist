@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import Layout from './Layout';
-import './Layout.css'
+import '../App.css';
 import { createBrowserHistory } from 'history';
 import uuid from "uuid";
 const history = createBrowserHistory();

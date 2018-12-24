@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Layout from './Layout';
-import './User.css';
+import '../App.css';
 import { createBrowserHistory } from 'history';
 import Collapsible from 'react-collapsible';
 
@@ -104,7 +104,7 @@ Welcome{' ' + this.state.name}! <br/>
   { lists.map((list) => (
 
       <div key={list._id}> 
-       <Collapsible trigger={(`${list.name} - ${list.description}`)}>
+       <Collapsible trigger={(`${list.name} - ${list.description}`)} className="listName" openedClassName="openListName">
           
         {list.items.map(item => (
             <div key={item.itemName}>
