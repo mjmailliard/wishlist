@@ -76,13 +76,9 @@ class User extends Component {
     history.push('/editlist', {state: {_id: event}} )
     history.go(0)
   }
-  handleDeleteListButton(id) {
-    fetch(`${apiURL}/list/${id}`,  {
+  async handleDeleteListButton(id)  {
+    await fetch(`${apiURL}/list/${id}`,  {
         method: 'DELETE'
-      //  body: formData,
-        // headers: {
-        //   "Content-Type":"application/json" 
-        //  }  
       }) 
     history.go(0)
   }

@@ -36,10 +36,10 @@ class NewList extends Component {
       }))
       
     }
-    handleSubmit = (e) => {
+    handleSubmit = async (e) =>  {
       e.preventDefault()
       const formData = JSON.stringify({...this.state})
-      fetch('${apiURL}/list',  {
+      await fetch(`${apiURL}/list`,  {
         method: 'POST',
         body: formData,
         headers: {

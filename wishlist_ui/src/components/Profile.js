@@ -39,8 +39,7 @@ class Profile extends Component {
            }  
         })
         history.go(0) // refresh page
-        alert('Your profile information has been updated.') 
-        // functions up to this point
+
       } else { //if email changed, check if new email is already in db
          fetch(`${apiURL}/users/verify/${this.state.newEmail}`, {
           headers: {
@@ -86,9 +85,8 @@ backHandler(event){
         // history.push('/user', {state: {_id: this.state._id}}) 
         history.goBack(1)
     }
-handleDeleteProfile(e) {
-  e.preventDefault()
-  fetch(`${apiURL}/users/${this.state._id}`,  {
+async handleDeleteProfile() {
+  await fetch(`${apiURL}/users/${this.state._id}`,  {
     method: 'DELETE'
 })
 history.replace('/')
@@ -153,7 +151,6 @@ Password: {off && <label>*******</label>}<br/>
 {on && <label>Verify Password:</label>}
 {on && <input type="password" name="passwordVerify" id="passwordVerify" defaultValue={this.state.password} className="listName" onChange={event => this.setState({passwordVerify: event.target.value})} autoComplete="password again"></input>}
 {on && <button type="submit">Save</button>}
-<button className="deleteProfileButton" onClick={() => { if (window.confirm('Are you sure you wish to delete this profile?\n (This process is irreversible, there is NO coming back from this...)')) this.handleDeleteProfile(this.state._id) }}>Delete Profile</button>
 
 
 
@@ -162,6 +159,7 @@ Password: {off && <label>*******</label>}<br/>
 </Toggle>
  <br/>
 </form>
+<button className="deleteProfileButton" onClick={() => { if (window.confirm('Are you sure you wish to delete this profile?\n (This process is irreversible, there is NO coming back from this...)')) this.handleDeleteProfile(this.state._id) }}>Delete Profile</button>
 
  <button className="backButton" onClick={e => this.backHandler(e)}>Back</button>
         </div>

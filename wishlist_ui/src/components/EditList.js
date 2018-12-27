@@ -65,7 +65,7 @@ class EditList extends Component {
         e.preventDefault()
         const formData = JSON.stringify({...this.state})
        
-            fetch(`${apiURL}/list/${this.state._id}`,  {
+            await fetch(`${apiURL}/list/${this.state._id}`,  {
             method: 'PATCH',
             body: formData,
             headers: {
