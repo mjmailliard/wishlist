@@ -5,14 +5,11 @@ import '../App.css';
 class Layout extends Component {
     render() {
         return (
-            <div className="site">
+            <div className="divMain">
                 
                     <header>
-                    <a href="/"><button className="homeButton">Home</button></a>
                         <h1>Wishlists</h1>
-                        {/* <a href="/signup"><button className="signUpButton">Sign Up</button></a>
-                        <a href="/login"><button className="loginButton">Login</button></a> */}
-                    </header>
+                   </header>
 
                     
                         {this.props.children}

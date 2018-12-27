@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-
 import Layout from './Layout';
 import '../App.css';
 import { createBrowserHistory } from 'history';
 import Toggle from './Toggle'
+import {apiURL} from '../App'
 
 const history = createBrowserHistory();
 
@@ -31,7 +31,7 @@ class Profile extends Component {
           name: this.state.name,
           password: this.state.password
         }
-        fetch(`http://localhost:3050/users/${this.state._id}`, {
+        fetch(`${apiURL}/users/${this.state._id}`, {
           method: 'PATCH',
           body: JSON.stringify(formData),
           headers: {
@@ -42,7 +42,7 @@ class Profile extends Component {
         alert('Your profile information has been updated.') 
         // functions up to this point
       } else { //if email changed, check if new email is already in db
-         fetch(`http://localhost:3050/users/verify/${this.state.newEmail}`, {
+         fetch(`${apiURL}/users/verify/${this.state.newEmail}`, {
           headers: {
             "Content-Type":"application/json"
           }})
@@ -62,7 +62,7 @@ class Profile extends Component {
                   password: this.state.password,
                   email: this.state.newEmail  
                 }
-                  await fetch(`http://localhost:3050/users/${this.state._id}`,{
+                  await fetch(`${apiURL}/users/${this.state._id}`,{
                     method: 'PATCH',
                     body: JSON.stringify(formData),
                     headers: {
@@ -87,7 +87,8 @@ backHandler(event){
         history.goBack(1)
     }
 handleDeleteProfile(e) {
-  fetch(`http://localhost:3050/users/${this.state._id}`,  {
+  e.preventDefault()
+  fetch(`${apiURL}/users/${this.state._id}`,  {
     method: 'DELETE'
 })
 history.replace('/')
@@ -98,7 +99,7 @@ history.go(0)
     componentDidMount() {
         // retrieve user info by {_id: }
         
-          fetch(`http://localhost:3050/users/${this.state._id}`, {
+          fetch(`${apiURL}/users/${this.state._id}`, {
             headers: {
               "Content-Type":"application/json"
             }
@@ -136,12 +137,12 @@ history.go(0)
            history.go(0)
  }}>Log Out</button>       
            
-          <h2>Profile Page</h2>
+          <h2>{`${this.state.name}'s`} Profile</h2>
 <form onSubmit={this.handleSubmit}>
  <Toggle>
  {({ on, off, toggle }) => ( 
 <div>
-       <button onClick={ toggle }>Edit</button> <br/>
+{off && <button onClick={ toggle }>Edit</button>} <br/>
 
 Name: {off && <label>{this.state.name}</label>}<br/>
 {on && <input type="text" name="name" id="name" value={this.state.name} className="listName" onChange={event => this.setState({name: event.target.value})} autoComplete="username"></input>}<br/>
@@ -151,7 +152,9 @@ Password: {off && <label>*******</label>}<br/>
 {on && <input type="password" name="password" id="password" value={this.state.password} className="listName" onChange={event => this.setState({password: event.target.value})} autoComplete="password"></input>}
 {on && <label>Verify Password:</label>}
 {on && <input type="password" name="passwordVerify" id="passwordVerify" defaultValue={this.state.password} className="listName" onChange={event => this.setState({passwordVerify: event.target.value})} autoComplete="password again"></input>}
-<button type="submit">Save</button>
+{on && <button type="submit">Save</button>}
+<button className="deleteProfileButton" onClick={() => { if (window.confirm('Are you sure you wish to delete this profile?\n (This process is irreversible, there is NO coming back from this...)')) this.handleDeleteProfile(this.state._id) }}>Delete Profile</button>
+
 
 
 </div>
@@ -159,7 +162,6 @@ Password: {off && <label>*******</label>}<br/>
 </Toggle>
  <br/>
 </form>
-<button className="deleteProfileButton" onClick={() => { if (window.confirm('Are you sure you wish to delete this profile?\n (This process is irreversible, there is NO coming back from this...)')) this.handleDeleteProfile(this.state._id) }}>Delete Profile</button>
 
  <button className="backButton" onClick={e => this.backHandler(e)}>Back</button>
         </div>

@@ -1,15 +1,12 @@
 import React, { Component } from 'react';
-
 import Layout from './Layout';
 import '../App.css';
 import { createBrowserHistory } from 'history';
 import uuid from "uuid";
+import {apiURL} from '../App'
+
 const history = createBrowserHistory();
-// let itemCount = 0
-// const itemCounter = () => {
-//   itemCount++
-// return itemCount
-// }
+
 
 class NewList extends Component {
     constructor(props) {
@@ -42,7 +39,7 @@ class NewList extends Component {
     handleSubmit = (e) => {
       e.preventDefault()
       const formData = JSON.stringify({...this.state})
-      fetch('http://localhost:3050/list',  {
+      fetch('${apiURL}/list',  {
         method: 'POST',
         body: formData,
         headers: {
@@ -64,7 +61,6 @@ class NewList extends Component {
     }
     backHandler(event){
         event.preventDefault()
-        // history.push('/user', {state: {_id: this.state._id}}) 
         history.goBack(1)
     }
 
@@ -86,14 +82,6 @@ let itemId=`item-${i}`,itemNameId=`item-${i}`,linkId=`link-${i}`,itemDescription
 
   return(
     <div className="newList" key={itemId}>
-    {/* <input 
-       type="hidden"
-       name={itemId}
-       data-id={i}
-       id={itemId}
-       value={itemId}
-       className="item_id">
-    </input> */}
 
      <input
        type="text" 
@@ -122,17 +110,10 @@ let itemId=`item-${i}`,itemNameId=`item-${i}`,linkId=`link-${i}`,itemDescription
   )
 })}
 
-
-
 <button onClick={this.addItem}>New Item</button>
 <button type="submit" onSubmit={e => this.handleSubmit(e)}>Save List</button>
 
 </form>
-
-
-
-
-
 
  <button className="backButton" onClick={e => this.backHandler(e)}>Back</button>
         </div>

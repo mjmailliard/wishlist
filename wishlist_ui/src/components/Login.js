@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Layout from './Layout';
 import '../App.css';
 import { createBrowserHistory } from 'history';
+import{ apiURL } from '../App';
 
 const history = createBrowserHistory();
 
@@ -28,7 +29,7 @@ const history = createBrowserHistory();
     event.preventDefault()
   
 
-       fetch(`http://localhost:3050/users/email/${this.state.email}`, {
+       fetch(`${apiURL}/users/email/${this.state.email}`, {
       headers: {
         "Content-Type":"application/json"
       }

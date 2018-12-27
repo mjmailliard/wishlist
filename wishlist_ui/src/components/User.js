@@ -3,6 +3,7 @@ import Layout from './Layout';
 import '../App.css';
 import { createBrowserHistory } from 'history';
 import Collapsible from 'react-collapsible';
+import{ apiURL } from '../App';
 
 const history = createBrowserHistory();
 let db_user = '';
@@ -24,7 +25,7 @@ class User extends Component {
   componentDidMount() {
   // retrieve user info by {_id: }
   
-    fetch(`http://localhost:3050/users/${this.state._id}`, {
+    fetch(`${apiURL}/users/${this.state._id}`, {
       headers: {
         "Content-Type":"application/json"
       }
@@ -42,7 +43,7 @@ class User extends Component {
    
     })
   // retrieve user lists by {owner: }
-  fetch(`http://localhost:3050/lists/${this.state._id}`, {
+  fetch(`${apiURL}/lists/${this.state._id}`, {
     headers: {"Content-Type":"application/json" }})
     .then(results => {
      return results.json() 
@@ -76,7 +77,7 @@ class User extends Component {
     history.go(0)
   }
   handleDeleteListButton(id) {
-    fetch(`http://localhost:3050/list/${id}`,  {
+    fetch(`${apiURL}/list/${id}`,  {
         method: 'DELETE'
       //  body: formData,
         // headers: {
@@ -95,32 +96,31 @@ class User extends Component {
         <div>
  
  
-Welcome{' ' + this.state.name}! <br/>
-<button onClick={e => this.handleNewListButton(e)}>New List</button><button onClick={this.handleProfile}>Edit Profile</button>
-
-
- 
+<h2>Welcome{' ' + this.state.name}! </h2><br/>
 
   { lists.map((list) => (
 
-      <div key={list._id}> 
-       <Collapsible trigger={(`${list.name} - ${list.description}`)} className="listName" openedClassName="openListName">
-          
-        {list.items.map(item => (
-            <div key={item.itemName}>
+      <div key={list._id} className="userDiv"> 
+       <Collapsible trigger={<div className="listSelectDiv">{(`${list.name}`)}</div>} className="listName" openedClassName="openListName">
+         {list.description} 
+         {list.items.map(item => (
+          <div className="listItemDiv" key={item.itemName}>
           <a href={`${item.link}`} target="__blank">{item.itemName}</a> <br/> 
-          <label>{item.itemDescription}</label> 
+          <div className="listItemDiv">{item.itemDescription}</div> 
           
             </div>))}
+            <div className="buttonDiv">
             <button name="editListButton" id={`editBtn-${list._id}`} onClick={() => this.handleEditListButton(list._id)}>Edit list</button>
           <button name="deleteListButton" id={`delBtn-${list._id}`}  onClick={() => { if (window.confirm('Are you sure you wish to delete this item?\n (This process is irreversible)')) this.handleDeleteListButton(list._id) }}>Delete List</button>
-          
+          </div>
  </Collapsible>
       </div>
 
     ))
   }
-      
+  <div className="buttonDiv">
+    <button onClick={e => this.handleNewListButton(e)}>New List</button><button onClick={this.handleProfile}>Edit Profile</button>
+  </div>      
 
 
 <br/>

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Layout from './Layout';
 import '../App.css';
 import { createBrowserHistory } from 'history';
+import {apiURL} from '../App'
 
 const history = createBrowserHistory();
 class Signup extends Component {
@@ -37,7 +38,7 @@ class Signup extends Component {
     }
   
 //check if account email is already in the db
-fetch(`http://localhost:3050/users/verify/${this.state.email}`, {
+fetch(`${apiURL}/users/verify/${this.state.email}`, {
   headers: {
     "Content-Type":"application/json"
   }
@@ -54,14 +55,14 @@ this.setState({
    if ( this.state.email === this.state.dbEmail ) {
     alert(`${this.state.email} already has an account.`)
  } else { 
-       await fetch('http://localhost:3050/users',  {
+       await fetch(`${apiURL}/users`,  {
         method: 'POST',
         body: JSON.stringify(formData),
         headers: {
           "Content-Type":"application/json" 
          }  
       }) 
-      await fetch(`http://localhost:3050/users/verify/${this.state.email}`, {
+      await fetch(`${apiURL}/users/verify/${this.state.email}`, {
         headers: {
           "Content-Type":"application/json"
         }
@@ -77,19 +78,9 @@ this.setState({
           history.push('/user', {state: {db_id: this.state.db_id}}) 
           history.go(0) 
        }))})
-
-
-   
- } }))
-
-
+ }}))
 })
-
-
-
-    
-
-  
+ 
   }
   
   render() {

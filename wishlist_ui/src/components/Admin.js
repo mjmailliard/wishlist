@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Layout from './Layout';
 import '../App.css'
+// import {apiURL} from '../App'
+
 class Admin extends Component {
     render() {
       return (

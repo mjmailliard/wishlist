@@ -3,6 +3,8 @@ import Layout from './Layout';
 import '../App.css';
 import { createBrowserHistory } from 'history';
 import uuid from "uuid";
+import {apiURL} from '../App'
+
 const history = createBrowserHistory();
 let list_data
 class EditList extends Component {
@@ -22,7 +24,7 @@ class EditList extends Component {
     }
     componentDidMount() {
 
-        fetch(`http://localhost:3050/list/${this.state._id}`, {
+        fetch(`${apiURL}/list/${this.state._id}`, {
     headers: {"Content-Type":"application/json" }})
     .then(results => {
      return results.json() 
@@ -63,27 +65,13 @@ class EditList extends Component {
         e.preventDefault()
         const formData = JSON.stringify({...this.state})
        
-            fetch(`http://localhost:3050/list/${this.state._id}`,  {
+            fetch(`${apiURL}/list/${this.state._id}`,  {
             method: 'PATCH',
             body: formData,
             headers: {
               "Content-Type":"application/json" 
              }  
           })
-
-    //    await fetch(`http://localhost:3050/list/${this.state._id}`,  {
-    //       method: 'DELETE',
- 
-    //     }).then(
-            
-    //         fetch('http://localhost:3050/list',  {
-    //         method: 'POST',
-    //         body: formData,
-    //         headers: {
-    //           "Content-Type":"application/json" 
-    //          }  
-    //       })
-    //     )
     history.push('/user', {state: {db_id: this.state.owner}}) 
     history.go(0)
     }
@@ -113,17 +101,19 @@ class EditList extends Component {
     <div key={item.item_id} id={item.item_id} className="editList">
          <button name={item.item_id} value={item.item_id} onClick={e => this.handleDeleteItem(e)} className="deleteItemBtn">Delete</button><br/>
             
-       <input type="text" data-id={i} id={item.item_id} name="itemName" value={item.itemName} className="itemName" onChange={event => this.setState({items:[{itemName: event.target.value}]})}></input>
-       <input type="text" data-id={i} name="link" value={item.link} className="link" onChange={event => this.setState({items:[{link: event.target.value}]})}></input>
+       <input type="text" data-id={i} id={item.item_id} placeholder="Item Name" name="itemName" value={item.itemName} className="itemName" onChange={event => this.setState({items:[{itemName: event.target.value}]})}></input>
+       <input type="text" data-id={i} name="link" placeholder="Link" value={item.link} className="link" onChange={event => this.setState({items:[{link: event.target.value}]})}></input>
        <br/>
        
-        <textarea name="itemDescription" data-id={i} id="itemDescID" value={item.itemDescription} className="itemDescription" onChange={event => this.setState({items:[{itemDescription: event.target.value}]})}></textarea>
+        <textarea name="itemDescription" placeholder="Description" data-id={i} id="itemDescID" value={item.itemDescription} className="itemDescription" onChange={event => this.setState({items:[{itemDescription: event.target.value}]})}></textarea>
    
     </div>
  
 ))}
+<div className="buttonDiv">
         <button onClick={this.addItem}>New Item</button>
         <button type="submit">Save Changes</button>
+</div>
 </form>  
       
        <button className="backButton" onClick={e => this.backHandler(e)}>Back</button>

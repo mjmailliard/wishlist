@@ -1,5 +1,22 @@
 header {
-      text-align: center;
+  width: 100vw;
+  text-align: center;
+}
+.userDiv{
+width: 50vw;
+margin-left: auto;
+margin-right: auto;
+padding: 1px;
+border-radius: 5px;
+border: 1px solid rgb(179, 179, 179) ;
+
+}
+.listSelectDiv:hover{
+  background-color: rgb(139, 60, 170);
+  color: white;
+}
+.listItemDiv{
+  margin-left: 10px;
 }
 
 /* Button Styling */
@@ -8,7 +25,7 @@ button{
   background-color: #507;
   color: white;
   padding: 5px 5px;
-  margin: 8px 0;
+  margin: 8px;
   border: none;
   border-radius: 5px;
   cursor: pointer; 
@@ -37,7 +54,7 @@ background-color: rgb(139, 60, 170);
 }  
 .backButton{
   position: fixed;
-  bottom: 15px;
+  top: 15px;
   left: 15px;  
 }
 .deleteItemBtn{
@@ -80,14 +97,14 @@ input[type=submit]:hover {
   width: 20vw;
 }
 .link{
-width: 29vw;
+width: 28vw;
 }
 textarea{
 width: 49vw;
 padding: 5px 10px;
 margin: 3px 0;
 display: inline-block;
-border: 1px solid #ccc;
+border: 1px solid rgb(223, 223, 223);
 border-radius: 5px;
 box-sizing: border-box;
 }
@@ -95,6 +112,7 @@ box-sizing: border-box;
 padding: 0px;
 }
 .editList{
+  padding: 1px;
   border-radius: 5px;
   border: 1px solid rgb(129, 129, 129) ;
   margin: 2px;
@@ -113,7 +131,7 @@ text-align: center
 }
 
 .listName{
-  width: 50vw;
+  width: 49vw;
 
 }
 .listName:hover{
