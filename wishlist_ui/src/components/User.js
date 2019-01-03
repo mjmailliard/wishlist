@@ -105,6 +105,7 @@ class User extends Component {
           <div className="listItemDiv">{item.itemDescription}</div> 
           
             </div>))}
+        
             <div className="buttonDiv">
             <button name="editListButton" id={`editBtn-${list._id}`} onClick={() => this.handleEditListButton(list._id)}>Edit list</button>
           <button name="deleteListButton" id={`delBtn-${list._id}`}  onClick={() => { if (window.confirm('Are you sure you wish to delete this item?\n (This process is irreversible)')) this.handleDeleteListButton(list._id) }}>Delete List</button>
@@ -114,8 +115,12 @@ class User extends Component {
 
     ))
   }
+            <br/>
+            <br/>
+ 
   <div className="buttonDiv">
-    <button onClick={e => this.handleNewListButton(e)}>New List</button><button onClick={this.handleProfile}>Edit Profile</button>
+    <button onClick={e => this.handleNewListButton(e)}>New List</button>
+    <button onClick={this.handleProfile}>Edit Profile</button>
   </div>      
 
 

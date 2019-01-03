@@ -139,7 +139,7 @@ history.go(0)
 <form onSubmit={this.handleSubmit}>
  <Toggle>
  {({ on, off, toggle }) => ( 
-<div>
+<div className="userProfile">
 {off && <button onClick={ toggle }>Edit</button>} <br/>
 
 Name: {off && <label>{this.state.name}</label>}<br/>

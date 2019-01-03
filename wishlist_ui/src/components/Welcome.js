@@ -9,7 +9,15 @@ class Welcome extends Component {
         <Layout> 
         <div className="divMain">
            
-          <h2>Welcome Page</h2>
+          <h2>Welcome to Wishlists!</h2>
+          <p>
+            Just sign up to keep track of everything you ever wanted!
+          </p>
+          <br/>
+          <br/>
+          <br/>
+          <br/>
+ 
           <div className="buttonDiv">
             <a href="/signup"><button className="signUpButton">Sign Up</button></a>
             <a href="/login"><button className="loginButton">Login</button></a>
