@@ -78,7 +78,7 @@ class EditList extends Component {
     handleDeleteItem = (e) => {
         e.preventDefault()
         
-        const oldData = this.state.items.filter(item => item.item_id !=  e.target.name)
+        const oldData = this.state.items.filter(item => item.item_id !== e.target.name)
         this.setState({items: oldData})
     }
     backHandler(){
@@ -94,7 +94,7 @@ class EditList extends Component {
                  
                 <h2>Edit {this.state.name}</h2>
 <form onChange={this.handleChange} onSubmit={this.handleSubmit}>               
-      <input type="text" name="name" data-id="name" id="name" value={this.state.name} className="listName" onChange={event => this.setState({name: event.target.value})}></input><br/>
+      <input type="text" name="name" data-id="name" id="name" value={this.state.name} className="editListName" onChange={event => this.setState({name: event.target.value})}></input><br/>
        <textarea name="description" data-id="desc" id="desc" value={this.state.description} className="listDescription" onChange={event => this.setState({description: event.target.value})}></textarea><br/>
        <hr/>
 {listItems.map((item,i) => (

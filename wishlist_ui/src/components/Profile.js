@@ -36,7 +36,7 @@ class Profile extends Component {
           body: JSON.stringify(formData),
           headers: {
             "Content-Type":"application/json" 
-           }  
+           }
         })
         history.go(0) // refresh page
 
@@ -159,8 +159,9 @@ Password: {off && <label>*******</label>}<br/>
 </Toggle>
  <br/>
 </form>
-<button className="deleteProfileButton" onClick={() => { if (window.confirm('Are you sure you wish to delete this profile?\n (This process is irreversible, there is NO coming back from this...)')) this.handleDeleteProfile(this.state._id) }}>Delete Profile</button>
-
+<div className="buttonDiv">
+<button className="deleteProfileBtn" onClick={() => { if (window.confirm('Are you sure you wish to delete this profile?\n (This process is irreversible, there is NO coming back from this...)')) this.handleDeleteProfile(this.state._id) }}>Delete Profile</button>
+</div>
  <button className="backButton" onClick={e => this.backHandler(e)}>Back</button>
         </div>
         </Layout> 

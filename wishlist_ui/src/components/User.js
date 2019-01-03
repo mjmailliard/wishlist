@@ -89,7 +89,7 @@ class User extends Component {
 
       return (
           <Layout>
-        <div>
+        <div className="divMain">
  
  
 <h2>Welcome{' ' + this.state.name}! </h2><br/>
@@ -109,7 +109,7 @@ class User extends Component {
             <button name="editListButton" id={`editBtn-${list._id}`} onClick={() => this.handleEditListButton(list._id)}>Edit list</button>
           <button name="deleteListButton" id={`delBtn-${list._id}`}  onClick={() => { if (window.confirm('Are you sure you wish to delete this item?\n (This process is irreversible)')) this.handleDeleteListButton(list._id) }}>Delete List</button>
           </div>
- </Collapsible>
+        </Collapsible>
       </div>
 
     ))

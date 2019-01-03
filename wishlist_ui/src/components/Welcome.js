@@ -7,7 +7,7 @@ class Welcome extends Component {
     render() {
       return (
         <Layout> 
-        <div>
+        <div className="divMain">
            
           <h2>Welcome Page</h2>
           <div className="buttonDiv">

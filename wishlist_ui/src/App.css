@@ -1,7 +1,35 @@
 header {
-  width: 100vw;
+ 
+  
   text-align: center;
+
 }
+.clouds {
+  background-position: fixed;
+  background: url(./img/clouds.png);
+  background-position: top;
+  background-repeat: no-repeat;
+  background-attachment:fixed;
+  background-repeat: repeat-x;
+  animation-direction: alternate;
+	animation: animatedClouds 100s linear infinite;
+
+}
+.grass {
+  background-position: fixed;
+  background: url(./img/grass.png);
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-attachment:fixed;
+  background-repeat: repeat-x;
+  animation-direction: alternate;
+  animation: animatedGrass 60s linear infinite;
+}
+.editListName {
+  width: 48vw;
+ 
+}
+
 .userDiv{
 width: 50vw;
 margin-left: auto;
@@ -12,7 +40,7 @@ border: 1px solid rgb(179, 179, 179) ;
 
 }
 .listSelectDiv:hover{
-  background-color: rgb(139, 60, 170);
+  background-color: rgb(0, 116, 19);
   color: white;
 }
 .listItemDiv{
@@ -22,16 +50,18 @@ border: 1px solid rgb(179, 179, 179) ;
 /* Button Styling */
 
 button{
-  background-color: #507;
+  background-color: rgb(0, 116, 19);
   color: white;
   padding: 5px 5px;
   margin: 8px;
   border: none;
   border-radius: 5px;
   cursor: pointer; 
+  z-index: 10;
+;
 }
 button:hover {
-background-color: rgb(139, 60, 170);
+background-color: rgb(29, 192, 0);
 }
 .buttonDiv {
   text-align: center;
@@ -64,6 +94,7 @@ margin-bottom: 0px;
 /* margin-left: 70%;
  margin-right: 10%; */
 }
+
   
 /* Form Styling */
 form {
@@ -82,7 +113,7 @@ input, select {
 }
 input[type=submit] {
   width: 50vw;
-  background-color: #507;
+  background-color: rgb(0, 116, 19);
   color: white;
   padding: 14px 20px;
   margin: 8px 0;
@@ -91,8 +122,9 @@ input[type=submit] {
   cursor: pointer;
 }
 input[type=submit]:hover {
-  background-color: rgb(139, 60, 170);
+  background-color: rgb(29, 192,0);
 }
+
 .itemName{
   width: 20vw;
 }
@@ -100,7 +132,7 @@ input[type=submit]:hover {
 width: 28vw;
 }
 textarea{
-width: 49vw;
+width: 48vw;
 padding: 5px 10px;
 margin: 3px 0;
 display: inline-block;
@@ -121,28 +153,42 @@ padding: 0px;
 
 h2 {
 text-align: center
+
 }
 
 .divMain {
- width: 100vw;
- height: 100vh;
-  background-color: #f2f2f2;
+
+  width: 100vw;
+  min-height: 100vh;
   padding: 1px;
+  
 }
 
 .listName{
-  width: 49vw;
+  width: 50vw;
 
 }
 .listName:hover{
 
-  color: #507;
+  color: rgb(0, 116, 19);
+}
+.Collapsible {
+  background-color: rgba(250, 235, 215, 0.452)
+
 }
 .Collapsible:hover{
   width: 50vw;
-
 }
 
 footer {
       text-align: center;
+      
+  }
+  @keyframes animatedClouds {
+    from { background-position: top left; }
+    to { background-position: 100% 0}
+  }
+  @keyframes animatedGrass {
+    from { background-position: bottom right; }
+    to { background-position: bottom 0 }
   }
