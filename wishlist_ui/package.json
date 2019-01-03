@@ -4,8 +4,10 @@
   "private": true,
   "dependencies": {
     "auth0-js": "^9.8.2",
+    "cli": "^1.0.1",
     "formik": "^1.4.0",
     "history": "^4.7.2",
+    "netlify": "^2.2.1",
     "react": "^16.6.3",
     "react-collapsible": "^2.3.2",
     "react-dom": "^16.6.3",
