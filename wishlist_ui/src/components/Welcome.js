@@ -10,8 +10,10 @@ class Welcome extends Component {
         <div className="divMain">
            
           <h2>Welcome to Wishlists!</h2>
+          <br/>
           <p>
-            Just sign up to keep track of everything you ever wanted!
+          
+            Sign up to keep track of everything you ever wanted!
           </p>
           <br/>
           <br/>
