@@ -20,7 +20,7 @@ class Profile extends Component {
          dbEmail: ''
         };   
     }
-    handleSubmit = (e) => {
+ handleSubmit = async (e) => { 
       e.preventDefault()
       if( this.state.password !== this.state.passwordVerify) {
         throw alert('Your passwords do not match.')
@@ -30,8 +30,9 @@ class Profile extends Component {
         const formData = {
           name: this.state.name,
           password: this.state.password
-        }
-        fetch(`${apiURL}/users/${this.state._id}`, {
+        } 
+        
+        await fetch(`${apiURL}/users/${this.state._id}`, {
           method: 'PATCH',
           body: JSON.stringify(formData),
           headers: {
@@ -140,7 +141,7 @@ history.go(0)
  <Toggle>
  {({ on, off, toggle }) => ( 
 <div className="userProfile">
-{off && <button onClick={ toggle }>Edit</button>} <br/>
+{off && <div className="buttonDiv"><button onClick={ toggle }>Edit Profile</button></div>} <br/>
 
 Name: {off && <label>{this.state.name}</label>}<br/>
 {on && <input type="text" name="name" id="name" value={this.state.name} className="listName" onChange={event => this.setState({name: event.target.value})} autoComplete="username"></input>}<br/>
