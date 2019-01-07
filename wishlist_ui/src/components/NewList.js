@@ -74,7 +74,7 @@ class NewList extends Component {
  
 
           <form onSubmit={this.handleSubmit} onChange={this.handleChange}>
-            <input type="text" name="name" id="name" placeholder='List Name'></input><br/>
+            <input type="text" name="name" id="name" placeholder='List Name' className="editListName"></input><br/>
             <textarea rows="3" name="description" id="description" placeholder="List Description"></textarea><br/>
             <hr/>
 {items.map((val, i) => {
