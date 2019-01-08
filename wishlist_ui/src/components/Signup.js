@@ -3,6 +3,8 @@ import Layout from './Layout';
 import '../App.css';
 import { createBrowserHistory } from 'history';
 import {apiURL} from '../App'
+import { Fragment } from 'react';
+import  Toggle  from './Toggle';
 
 const history = createBrowserHistory();
 class Signup extends Component {
@@ -87,20 +89,40 @@ this.setState({
       return (
         <Layout>
         <div>
-          <form onSubmit={this.handleSubmit}>
+          <Toggle>
+          {({ on, off, toggle }) => ( 
+          <Fragment>
+          <form onSubmit={async e => {
+              toggle(e)
+              await this.handleSubmit(e) 
+          }}>
             <h2>Create an account</h2>
-            <label> Name: </label><br/>
-              <input type="text" name="name" onChange={event => this.setState({name: event.target.value})} id='nameInput' placeholder='Name'/><br/>
-            <label>Email: </label><br/>
-              <input type='email' name='email' onChange={event => this.setState({email: event.target.value})} id='emailInput' placeholder='email@email.com'/><br/>
-            <label> Password: </label><br/>
-              <input type="password" name="password" onChange={event => this.setState({password: event.target.value})}id='passwordInput' placeholder='password' autoComplete='new password'/><br/>
-            <label> Re-Enter Password: </label><br/>
-              <input type="password" name="passwordVerify" onChange={event => this.setState({passwordVerify: event.target.value})} id='passwordVerify' placeholder='Confirm password' autoComplete='new password again'/><br/>
-
-            <input type="submit" value="Submit" />
+              {off &&
+               <Fragment>
+                <label> Name: </label><br/>
+                  <input type="text" name="name" onChange={event => this.setState({name: event.target.value})} id='nameInput' placeholder='Name'/><br/>
+                <label>Email: </label><br/>
+                  <input type='email' name='email' onChange={event => this.setState({email: event.target.value})} id='emailInput' placeholder='email@email.com'/><br/>
+                <label> Password: </label><br/>
+                  <input type="password" name="password" onChange={event => this.setState({password: event.target.value})}id='passwordInput' placeholder='password' autoComplete='new password'/><br/>
+                <label> Re-Enter Password: </label><br/>
+                  <input type="password" name="passwordVerify" onChange={event => this.setState({passwordVerify: event.target.value})} id='passwordVerify' placeholder='Confirm password' autoComplete='new password again'/><br/>
+                <input type="submit" value="Submit" />
+              </Fragment>
+              }
+           
           </form>
-
+          
+            {on &&
+              <div className="loading-container">
+                <div className="spinner"></div>
+                <div className="spinner-center"></div>
+              <div className="loading-text">Loading...</div>
+            </div> 
+            }
+          </Fragment>
+          )}
+          </Toggle>
         </div>
         </Layout>
       );

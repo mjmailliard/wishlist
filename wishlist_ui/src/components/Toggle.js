@@ -1,5 +1,4 @@
-//this component not used in project
-//keeping it for future reference
+
 
 import  { Component} from 'react'
 

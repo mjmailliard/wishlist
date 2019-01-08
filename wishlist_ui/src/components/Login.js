@@ -3,7 +3,8 @@ import Layout from './Layout';
 import '../App.css';
 import { createBrowserHistory } from 'history';
 import{ apiURL } from '../App';
-
+import  Toggle  from './Toggle';
+import { Fragment } from 'react';
 const history = createBrowserHistory();
 
   class Login extends Component {
@@ -19,6 +20,7 @@ const history = createBrowserHistory();
 
       this.handleChange = this.handleChange.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this);
+    
     }
   
     handleChange(event) {
@@ -27,7 +29,7 @@ const history = createBrowserHistory();
     
     handleSubmit(event) {
     event.preventDefault()
-  
+ 
 
        fetch(`${apiURL}/users/email/${this.state.email}`, {
       headers: {
@@ -72,17 +74,36 @@ const history = createBrowserHistory();
         return (
           <Layout>
           <div>
-            <form onSubmit={this.handleSubmit}>
+            <Toggle>
+            {({ on, off, toggle }) => ( 
+              <div>
+            
+            <form onSubmit={async e => {
+              toggle(e)
+              await this.handleSubmit(e) 
+            }}>
+            
               <h2>Login</h2>
-              <label>Email: </label><br/>
+            {off &&  
+              <Fragment>
+                <label>Email: </label><br/>
                 <input type='email' name='email' onChange={event => this.setState({email: event.target.value})} id='emailInput' placeholder='email@email.com'/><br/>
-              <label> Password: </label><br/>
+                <label> Password: </label><br/>
                 <input type="password" name="password" onChange={event => this.setState({password: event.target.value})} id='passwordInput' placeholder='password' autoComplete='password'/><br/>
-
-              <input type="submit" value="Submit" />
+                <input type="submit" value="Submit" />
+              </Fragment>
+            }
             </form>
-          
-  
+          {on &&
+            <div className="loading-container">
+              <div className="spinner"></div>
+              <div className="spinner-center"></div>
+            <div className="loading-text">Loading...</div>
+          </div> 
+          }
+          </div>
+            )} 
+  </Toggle>
           </div>
           </Layout>
         );
